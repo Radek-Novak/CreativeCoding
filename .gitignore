@@ -1,1 +1,4 @@
 *.pdf
+doc/
+lectures/
+node_modules/
