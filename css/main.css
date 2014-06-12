@@ -96,9 +96,19 @@ textarea {
 /* ==========================================================================
    Author's custom styles
    ========================================================================== */
+html {
+}
 
-
-
+header, footer, main {
+    text-align: center;
+}
+footer {
+    background-color: #000;
+    color: #abcdef;
+    height: 50px;
+    line-height: 50px;
+    width: 100%;
+}
 
 
 
