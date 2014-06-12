@@ -105,14 +105,34 @@ header, footer, main {
 footer {
     background-color: #000;
     color: #abcdef;
-    height: 50px;
+    min-height: 50px;
     line-height: 50px;
     width: 100%;
 }
 
+main {
+    padding: 30px;
+}
+figure {
+    margin: 20px 0;
+    max-width: 100%
+}
+figure img {
+    max-width: 100%;
+}
 
-
-
+.codelink {
+    text-decoration: underline;
+}
+.codelink:hover {
+    text-decoration: none;
+}
+.codelink:before {
+    content: '[';
+}
+.codelink:after {
+    content: ']';
+}
 
 
 
