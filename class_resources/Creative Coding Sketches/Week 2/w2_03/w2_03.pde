@@ -20,6 +20,12 @@ radek-novak.com
 
 void setup() {
   size(600, 600);
+  
+  textAlign(CENTER);
+  textSize(30);
+  fill(0, 102, 153);
+  text("click here",300,300);
+
   rectMode(CORNER);
   noStroke();
   frameRate(20);  // set the frame rate to 1 draw() call per second
@@ -40,7 +46,7 @@ void draw() {
     float cellsize = ( width - (num + 1) * gap ) / (float)num;
     
     // print out the size of each square
-    println("cellsize = " + cellsize);
+    //println("cellsize = " + cellsize);
 
       for (int i=0; i<num; i++) {
         for (int j=0; j<num; j++) {
