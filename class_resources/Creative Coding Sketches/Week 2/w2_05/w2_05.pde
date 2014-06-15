@@ -58,8 +58,8 @@ void movingCircle(float x, float y, float size, int circleNum) {
 
   noStroke();
   fill(0);
-  rect(tempX, tempY, size/5, size/5);
-  rect(tempX, tempY, 1, size*5);
+  //rect(tempX, tempY, size/5, size/5);
+  //rect(tempX, tempY, 1, size*5);
   stroke(0);
   noFill();
   stroke(0);

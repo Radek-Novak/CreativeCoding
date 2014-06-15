@@ -113,7 +113,12 @@ footer {
     line-height: 50px;
     width: 100%;
 }
-
+a { 
+    color: inherit;
+}
+a:hover {
+    text-decoration: none;
+}
 main {
     padding: 30px;
 }
@@ -137,9 +142,17 @@ figure img {
 .codelink:after {
     content: ']';
 }
+canvas {
+    box-shadow: 0 0 15px  #abcdef;
+    max-width: 100%;
+}
 
-
-
+footer a {
+    color: #abcdef;
+}
+footer a:hover {
+    text-decoration: none;
+}
 
 
 
