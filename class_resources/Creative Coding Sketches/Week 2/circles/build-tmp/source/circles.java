@@ -40,10 +40,10 @@ public void setup() {
   fill(0,0,0,fillOpac);
   stroke(0,0,0, strokeOpac);
   //blendMode(SCREEN);
-  circles(num, radius);
 }
 
 public void draw() {
+  circles(num, radius);
   if (mousePressed) {
 /*    fillOpac = floor(((float) mouseY / height) * 10);
     fill(0,0,0,fillOpac);

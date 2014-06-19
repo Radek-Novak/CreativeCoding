@@ -28,11 +28,11 @@ void draw() {
   background(red, green, blue);
 
   if (mousePressed) {
-    red = map(mouseX, 0, width, 0, 255);
-    green = map(mouseY, 0, height, 0, 255);
+    red = map(mouseX-mouseY, 0, width, 0, 255);
+    green = map(mouseY-mouseX, 0, height, 0, 255);
     blue = map(mouseX+mouseY, 0, width+height, 255, 0);
     
-    println("red: "+red+", green: "+green+", blue: "+blue);
+    //println("red: "+red+", green: "+green+", blue: "+blue);
     
   }
 }

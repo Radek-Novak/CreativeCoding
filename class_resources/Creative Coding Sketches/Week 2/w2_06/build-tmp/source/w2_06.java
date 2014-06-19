@@ -12,18 +12,17 @@ import java.io.InputStream;
 import java.io.OutputStream; 
 import java.io.IOException; 
 
-public class w2_05 extends PApplet {
+public class w2_06 extends PApplet {
 
 /*
  * Creative Coding
- * Week 2, 05 - Moving Patterns 1
+ * Week 2, 06 - Moving Patterns 2
  * by Indae Hwang and Jon McCormack
  * Copyright (c) 2014 Monash University
  *
- * This sketch builds on the previous sketches, drawing shapes based on the
- * current framerate. The movement of individual shapes combine to create a
- * gestalt field of motion. Use the arrow keys on your keyboard to change the
- * frame rate. 
+ * Similar to the previous sketch, this sketch draws a grid of oscillating circles. Each circle has a "lifetime"
+ * over which it grows and changes intensity and opacity. At the end of each lifetime the circle begins again.
+ * Pressing the left and right arrow keys changes the lifetime of all the circles globally.
  * 
  */
 
@@ -31,18 +30,19 @@ public class w2_05 extends PApplet {
 int frame_rate_value;
 
 public void setup() {
-  size(500, 500);
 
-  frame_rate_value = 6;
-  frameRate(frame_rate_value);
+  // make the display window the full size of the screen
+  size(displayWidth, displayHeight);
+
+  frame_rate_value = 12;
   rectMode(CENTER);
-  background(255);
+  background(0);
 }
 
 
 public void draw() {
 
-  background(255);
+  background(0);
 
   int num = 20;
   int margin = 0;
@@ -63,23 +63,17 @@ public void draw() {
 } //end of draw 
 
 
-public void movingCircle(float x, float y, float size, int circleNum) {
+public void movingCircle(float x, float y, float size, int offset) {
 
-  float finalAngle;
-  finalAngle = frameCount + circleNum;
+  float circlePeriod = (float)frame_rate_value;
+  float circleAge = (float)((frameCount + offset) % (int)circlePeriod) / circlePeriod;
 
-  //the rotating angle for each tempX and tempY postion is affected by frameRate and angle;  
-  float tempX = x + (size / 2) * sin(PI / frame_rate_value * finalAngle);
-  float tempY = y + (size / 2) * cos(PI / frame_rate_value * finalAngle);
+  float circleSize = size * 2.0f * sin(circleAge * HALF_PI);
 
-  noStroke();
-  fill(0);
-  //rect(tempX, tempY, size/5, size/5);
-  //rect(tempX, tempY, 1, size*5);
-  stroke(0);
-  noFill();
-  stroke(0);
-  line(x, y, tempX, tempY);
+  strokeWeight(2);
+  stroke(255, lerp(255, 0, circleAge));
+  fill(lerp(128, 0, circleAge), lerp(120, 0, circleAge));
+  ellipse(x-size/2, y-size/2, circleSize, circleSize);
 }
 
 
@@ -91,22 +85,24 @@ public void movingCircle(float x, float y, float size, int circleNum) {
 public void keyReleased() {
 
   // right arrow -- increase frame_rate_value
-  if (keyCode == RIGHT && frame_rate_value < 60) {
+  if (keyCode == RIGHT && frame_rate_value < 120) {
     frame_rate_value++;
   }
 
   // left arrow -- decrease frame_rate_value
-  if ( keyCode == LEFT && frame_rate_value > 1) {
+  if ( keyCode == LEFT && frame_rate_value > 2) {
     frame_rate_value--;
   }
 
-  // set the frameRate and print current value on the screen
-  frameRate(frame_rate_value);
+  // print the current value on the screen
   println("Current frame Rate is: " + frame_rate_value);
 }
 
+public void mouseClicked() {
+  frame_rate_value = (int) map(mouseX, 0, displayWidth, 2, 120);
+}
   static public void main(String[] passedArgs) {
-    String[] appletArgs = new String[] { "w2_05" };
+    String[] appletArgs = new String[] { "w2_06" };
     if (passedArgs != null) {
       PApplet.main(concat(appletArgs, passedArgs));
     } else {

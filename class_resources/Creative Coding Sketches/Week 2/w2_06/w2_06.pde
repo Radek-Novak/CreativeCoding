@@ -82,3 +82,6 @@ void keyReleased() {
   println("Current frame Rate is: " + frame_rate_value);
 }
 
+void mouseClicked() {
+  frame_rate_value = (int) map(mouseX, 0, displayWidth, 2, 120);
+}

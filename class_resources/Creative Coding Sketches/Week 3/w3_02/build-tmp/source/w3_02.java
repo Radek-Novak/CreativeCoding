@@ -1,3 +1,19 @@
+import processing.core.*; 
+import processing.data.*; 
+import processing.event.*; 
+import processing.opengl.*; 
+
+import java.util.HashMap; 
+import java.util.ArrayList; 
+import java.io.File; 
+import java.io.BufferedReader; 
+import java.io.PrintWriter; 
+import java.io.InputStream; 
+import java.io.OutputStream; 
+import java.io.IOException; 
+
+public class w3_02 extends PApplet {
+
 /*
  * Creative Coding
  * Week 3, 02 - array with sin()
@@ -25,10 +41,10 @@ float red = 120;
 float green = 120;
 float blue = 120;
 
-void setup() {
+public void setup() {
   size(500, 500);
 
-  num = 10;
+  num = 12;
   s = 30;
   // allocate space for each array
   x = new float[num];
@@ -38,7 +54,7 @@ void setup() {
   stopped = new int[num];
 
   // calculate the gap in y based on the number of circles
-  gap = height / (num + 1);
+  gap = height / (num + 1); // 500 / 5 = 100
 
   //setup an initial value for each item in the array
   for (int i=0; i<num; i++) {
@@ -50,7 +66,7 @@ void setup() {
 }
 
 
-void draw() {
+public void draw() {
   background(red, green, blue);
 
   for (int i=0; i<num; i++) {
@@ -66,13 +82,13 @@ void draw() {
 
 
 // change the background colour if the mouse is dragged
-void mouseDragged() {
+public void mouseDragged() {
   red = map(mouseX, 0, width, 0, 255);
   green = map(mouseY, 0, height, 0, 255);
   blue = map(mouseX+mouseY, 0, width+height, 255, 0);
 }
 
-void mouseClicked() {
+public void mouseClicked() {
   for (int i = 0; i < y.length; i++) {
     if (dist(x[i], y[i], mouseX, mouseY) < s ) {
       println(x[i], y[i], i);
@@ -85,5 +101,14 @@ void mouseClicked() {
       }
     }
 
+  }
+}
+  static public void main(String[] passedArgs) {
+    String[] appletArgs = new String[] { "w3_02" };
+    if (passedArgs != null) {
+      PApplet.main(concat(appletArgs, passedArgs));
+    } else {
+      PApplet.main(appletArgs);
+    }
   }
 }
