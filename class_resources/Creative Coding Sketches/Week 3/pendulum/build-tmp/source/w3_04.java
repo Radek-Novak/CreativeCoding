@@ -30,7 +30,7 @@ float dx, dy;    // change in position at each frame
 float rad;       // radius for the moving hand
 
 public void setup() {
-  size(800, 800);
+  size(500, 500);
 
   // initial position in the centre of the screen
   x = width/2;
@@ -39,52 +39,51 @@ public void setup() {
   // dx and dy are the small change in position each frame
   dx = random(-1, 1);
   dy = random(-1, 1);
-  background(255);
-  //frameRate(200);
+  background(0);
 }
 
 
 public void draw() {
   // blend the old frames into the background
-  //blend(BLEND);
-  fill(255, 2);
-  //rect(0, 0, width, height);
+  blendMode(BLEND);
+  fill(0, 3);
+  rect(0, 0, width, height);
+  background(0);
   rad = radians(frameCount);
 
   // calculate new position
   x += dx;
   y += dy;
-
   float max = 1;
   float min = 0.5f;
 
- if (x > width-100 || x < 100) {
-    x = x > width - 100 ? 100 : width - 100;
-    //dx = dx > 0 ? -random(min, max) : random(min, max);
+  //When the shape hits the edge of the window, it reverses its direction and changes velocity
+  if (x > width-100 || x < 100) {
+    dx = dx > 0 ? -random(min, max) : random(min, max);
   }
 
   if (y > height-100 || y < 100) {
-    y = y > height - 100 ? 100 : height - 100;
-    //dy = dy > 0 ? -random(min, max) : random(min, max);
+    dy = dy > 0 ? -random(min, max) : random(min, max);
   }
+
   float bx = x + 100 * sin(rad);
   float by = y + 100 * cos(rad);
 
-  fill(80,55,20);
+  fill(180);
 
   float radius = 100 * sin(rad*0.1f);
   float handX = bx + radius * sin(rad*3);
   float handY = by + radius * cos(rad*3);
 
-  stroke(80,55,20, 50);
-  line(bx, by, handX, handY);
-  line(width - bx, height - by, width -  handX, height - handY);
-  line(width - bx, by, width -  handX, handY);
-  line(bx, height - by, handX, height - handY);
-  //dx = random(99) > 97 ? -dx : dx;
-  //dy = random(99) > 97 ? -dy : dy;
-}
+  ellipse(x, y, 2, 2);
 
+  stroke(200, 100,100);
+  line(x, y, bx, by);
+  
+  stroke(255);
+  line(bx, by, handX, handY);
+
+}
   static public void main(String[] passedArgs) {
     String[] appletArgs = new String[] { "w3_04" };
     if (passedArgs != null) {
