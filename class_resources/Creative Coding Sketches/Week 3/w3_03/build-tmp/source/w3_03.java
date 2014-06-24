@@ -80,7 +80,7 @@ public void setup() {
 
 public void draw() {
   // don't clear the screen each frame by calling background()
-   background(128);
+  // background(128);
   
   fill(255);
 
