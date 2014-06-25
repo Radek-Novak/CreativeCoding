@@ -36,11 +36,6 @@ float hueValue = 90;
 float brightValue = 100;
 float complementryHue = 0;
 
-// color showcase
-int current = 0;
-int MAX_COLORS = 8;
-int clsz;
-
 void setup() {
 
   size(800, 800);
@@ -48,19 +43,13 @@ void setup() {
 
     colorHandleX = width/2+300;
   colorHandleY = height/2;
-
-  clsz =  width / MAX_COLORS;
-
-
 }
 
 
 void draw() {
   //Since were using HSB colour mode this clears the display window to white
   //         H  S  B
-  //background(0, 0, 100);
-  fill(0, 0, 100);
-  rect(0, 0, width, height - 100);
+  background(0, 0, 100);
 
   // draw reference line at the 0/360 hue boundary
   stroke(0, 40);
@@ -68,25 +57,21 @@ void draw() {
 
   //draw itten's color wheel - we'll use a QUAD_STRIP for this
   noStroke();
-  for (int circ_i = 100; circ_i < 200; circ_i+=5) {
+  beginShape(QUAD_STRIP);
+  for (int i=0; i<=10; i++) {
+    float angle = radians(36*i-90); // 10 x 36 degree steps
+    fill(36*i, 100, 100);
 
-    beginShape(QUAD_STRIP);
-    for (int i=0; i<=120; i++) {
-      float angle = radians(3*i+90); // 10 x 36 degree steps
-      fill(3*i, 100, circ_i-100);
-
-      //outside(top)
-      vertex(width/2 + (circ_i+50)*sin(angle), height/2 + (circ_i+50)*cos(angle) );
-      //inside(down)
-      vertex(width/2 + circ_i*sin(angle), height/2 + circ_i*cos(angle) );
-    }
-    endShape(CLOSE);
+    //outside(top)
+    vertex(width/2 + outerR*sin(angle), height/2 + outerR*cos(angle) );
+    //inside(down)
+    vertex(width/2 + innerR*sin(angle), height/2 + innerR*cos(angle) );
   }
+  endShape(CLOSE);
 
 
   // colour handle Position Update
   colorHandleUpdate();
-  complementryHue = calculateCompHue(hueValue);
 
   //draw dotted line from center to colorhandle
   dotLine(width/2, height/2, colorHandleX, colorHandleY, 40); 
@@ -96,7 +81,7 @@ void draw() {
   fill(0);
   ellipse(width/2, height/2, 10, 10);
   //   H         S    B
-  fill(complementryHue, 100, brightValue);
+  fill(hueValue, 100, brightValue);
   ellipse(colorHandleX, colorHandleY, handleSize, handleSize );
 
   //complementry color for colorHandle (comHand)
@@ -108,10 +93,11 @@ void draw() {
   //dotline from center to comHand
   dotLine(width/2, height/2, comHandX, comHandY, 20); 
 
+  complementryHue = calculateCompHue(hueValue);
 
   //println("hueValue: "+hueValue + " + "+"comhue: "+complementryHue);
 
-  fill( hueValue, 100, brightValue );
+  fill( complementryHue, 100, brightValue );
   ellipse(comHandX, comHandY, 40, 40);
 }
 
@@ -169,8 +155,8 @@ void colorHandleUpdate() {
  * boolean function that returns true if the mouse is within the circle with centre (x,y) radius r
  */
 boolean isWithinCircle(float x, float y, float r) {
-  float dist = dist(mouseX, mouseY, x, y);
-  return (dist <= r);
+  float dista = dist(mouseX, mouseY, x, y);
+  return (dista <= r);
 }
 
 /*
@@ -208,18 +194,5 @@ void mousePressed() {
  */
 void mouseReleased() {
   isLocked = false;
-  saveColor();
 }
 
-// save color
-void saveColor() {
-  fill(hueValue, 100, brightValue);
-  rect(clsz * current, height - clsz, clsz, clsz);
-
-  fill(complementryHue, 100, brightValue);
-  rect(clsz * current + clsz / 4, height - clsz + clsz / 4, clsz/2, clsz/2);
-  
-//println(clsz * current, height - clsz, clsz * current + clsz, height);
-  current = ++current >= MAX_COLORS ? 0 : current++;
-
-}

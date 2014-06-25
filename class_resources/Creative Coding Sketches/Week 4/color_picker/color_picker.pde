@@ -201,8 +201,8 @@ void colorHandleUpdate() {
  * boolean function that returns true if the mouse is within the circle with centre (x,y) radius r
  */
 boolean isWithinCircle(float x, float y, float r) {
-  float dist = dist(mouseX, mouseY, x, y);
-  return (dist <= r);
+  float dista = dist(mouseX, mouseY, x, y);
+  return (dista <= r);
 }
 
 /*
@@ -230,10 +230,7 @@ void dotLine(float x1, float y1, float x2, float y2, int dotDetail) {
 void mousePressed() {
   if (isWithinCircle(colorHandleX, colorHandleY, handleSize)) {
     isLocked = true;
-  } /*else if (isWithinCircle(width/2, height/2, innerR - handleSize/2 - 10  )) {
-    //println(dist(width/2, height/2, mouseX, mouseY));
-    brightValue = 100 / dist(width/2, height/2, mouseX, mouseY) + 10;
-  }*/
+  }
 }
 
 /*
