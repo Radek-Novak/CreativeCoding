@@ -1,6 +1,5 @@
 float[] elx;
 float[] ely;
-//float[] elr;
 float[] dx;
 float[] dy;
 int num;

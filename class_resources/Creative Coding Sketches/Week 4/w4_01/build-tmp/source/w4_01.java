@@ -1,3 +1,19 @@
+import processing.core.*; 
+import processing.data.*; 
+import processing.event.*; 
+import processing.opengl.*; 
+
+import java.util.HashMap; 
+import java.util.ArrayList; 
+import java.io.File; 
+import java.io.BufferedReader; 
+import java.io.PrintWriter; 
+import java.io.InputStream; 
+import java.io.OutputStream; 
+import java.io.IOException; 
+
+public class w4_01 extends PApplet {
+
 /*
  * Creative Coding
  * Week 4, 01 - an interactive colour wheel picker
@@ -21,7 +37,7 @@ float handleSize = 30;
 
 // boolean isLocked
 // the state of handle: when the color handle is pressed, 
-// color hand is locked–released as the left mouse button is released 
+// color hand is locked\u2013released as the left mouse button is released 
 //
 boolean isLocked = false;
 
@@ -29,7 +45,7 @@ boolean isLocked = false;
 //
 float innerR = 100; // inner
 float outerR = 200; // outer
-float outerR2 = outerR * 1.5; // limit of the handle's "pull" range
+float outerR2 = outerR * 1.5f; // limit of the handle's "pull" range
 
 // current and complementry colour
 float hueValue = 90;
@@ -41,7 +57,7 @@ int current = 0;
 int MAX_COLORS = 8;
 int clsz;
 
-void setup() {
+public void setup() {
 
   size(800, 800);
   colorMode(HSB, 360, 100, 100); // use HSB colour mode, H=0->360, S=0->100, B=0->100
@@ -55,7 +71,7 @@ void setup() {
 }
 
 
-void draw() {
+public void draw() {
   //Since were using HSB colour mode this clears the display window to white
   //         H  S  B
   //background(0, 0, 100);
@@ -120,7 +136,7 @@ void draw() {
  *
  * Calculates the complimentary hue from the hue supplied
  */
-float calculateCompHue(float hueValue) {
+public float calculateCompHue(float hueValue) {
 
   // Calculate complimentary color with hueValue
   // The complimentary colour should be 180 degrees opposite the selected colour
@@ -138,7 +154,7 @@ float calculateCompHue(float hueValue) {
  * Updates the position and orientation of the colour handle based on
  * mouse position when left mouse button is pressed.
  */
-void colorHandleUpdate() {
+public void colorHandleUpdate() {
 
   // isLocked will be true if we pressed the mouse down while over the handle
   if (isLocked) {
@@ -168,7 +184,7 @@ void colorHandleUpdate() {
  * isWithinCircle
  * boolean function that returns true if the mouse is within the circle with centre (x,y) radius r
  */
-boolean isWithinCircle(float x, float y, float r) {
+public boolean isWithinCircle(float x, float y, float r) {
   float dist = dist(mouseX, mouseY, x, y);
   return (dist <= r);
 }
@@ -177,7 +193,7 @@ boolean isWithinCircle(float x, float y, float r) {
  * dotLine
  * draw a dotted line from (x1,y1) to (x2,y2)
  */
-void dotLine(float x1, float y1, float x2, float y2, int dotDetail) {
+public void dotLine(float x1, float y1, float x2, float y2, int dotDetail) {
 
   for (int i=0; i<=dotDetail; i++) {
     float dotDetailFloat = (float) dotDetail;
@@ -195,7 +211,7 @@ void dotLine(float x1, float y1, float x2, float y2, int dotDetail) {
  * If so, set isLocked to true to lock manipulation of the handle
  *
  */
-void mousePressed() {
+public void mousePressed() {
   if (isWithinCircle(colorHandleX, colorHandleY, handleSize)) {
     isLocked = true;
   }
@@ -206,13 +222,13 @@ void mousePressed() {
  * Unlock control of the handle
  *
  */
-void mouseReleased() {
+public void mouseReleased() {
   isLocked = false;
   saveColor();
 }
 
 // save color
-void saveColor() {
+public void saveColor() {
   fill(hueValue, 100, brightValue);
   rect(clsz * current, height - clsz, clsz, clsz);
 
@@ -222,4 +238,13 @@ void saveColor() {
 //println(clsz * current, height - clsz, clsz * current + clsz, height);
   current = ++current >= MAX_COLORS ? 0 : current++;
 
+}
+  static public void main(String[] passedArgs) {
+    String[] appletArgs = new String[] { "w4_01" };
+    if (passedArgs != null) {
+      PApplet.main(concat(appletArgs, passedArgs));
+    } else {
+      PApplet.main(appletArgs);
+    }
+  }
 }
