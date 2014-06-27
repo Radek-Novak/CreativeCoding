@@ -175,8 +175,15 @@ main > section {
 section section {
     margin-bottom: 40px;
 }
-
-
+.rule {
+    max-width: 500px;
+    margin: 0 auto;
+    text-align: left;
+}
+.copy-info {
+    color: #888;
+    
+}
 
 
 

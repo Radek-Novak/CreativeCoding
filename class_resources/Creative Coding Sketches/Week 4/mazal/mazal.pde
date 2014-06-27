@@ -38,9 +38,9 @@ boolean showBalls = true;
 float lastX = 0;
 
 void setup() {
-  size(700, 1005);
+  size(350, 500);
   background(0);
-  bgImg = loadImage("karelin.jpg");
+  bgImg = loadImage("img/chomsky.jpg");
   
   rectMode(CENTER);
   smooth(4);

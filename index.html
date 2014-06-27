@@ -24,26 +24,28 @@
         <![endif]-->
     <header>
         <h1>Creative Coding</h1>
-        <p>my demos for <a href="https://www.futurelearn.com/courses/creative-coding">the online course</a></p>
-        <p>written in <a href="http://processing.org/">Processing</a>, ported with <a href="http://processingjs.org/">Processing.js</a></p>
+        <p>my demos for <a href="https://www.futurelearn.com/courses/creative-coding">the online course</a>
+        </p>
+        <p>written in <a href="http://processing.org/">Processing</a>, ported with <a href="http://processingjs.org/">Processing.js</a>
+        </p>
     </header>
 
     <main>
 
-       <section>
-           <h1>Week 1 (Draw your name)</h1>
-           <section id="w1e3">
-               <h1>Exercise 3</h1>
-               <p>I copied drawing parts and changed the coordinations to mirror drawing
-                   <a class="codelink" href="https://github.com/Radek-Novak/CreativeCoding/blob/gh-pages/class_resources/Creative%20Coding%20Sketches/Week%201/w1_03/w1_03.pde">code</a>
-               </p>
-               <button class="js-hide">toggle demo</button>
-               <canvas data-processing-sources="class_resources/Creative%20Coding%20Sketches/Week%201/w1_03/w1_03.pde"></canvas>
-           </section>
-       </section>
+        <section>
+            <h1>Week 1 (Draw your name)</h1>
+            <section id="w1e3">
+                <h1>Exercise 3</h1>
+                <p>I copied drawing parts and changed the coordinations to mirror drawing
+                    <a class="codelink" href="https://github.com/Radek-Novak/CreativeCoding/blob/gh-pages/class_resources/Creative%20Coding%20Sketches/Week%201/w1_03/w1_03.pde">code</a>
+                </p>
+                <button class="js-hide">toggle demo</button>
+                <canvas data-processing-sources="class_resources/Creative%20Coding%20Sketches/Week%201/w1_03/w1_03.pde"></canvas>
+            </section>
+        </section>
         <section>
             <h1>Week 2 (programming constructs, interactivity in art)</h1>
-            
+
             <section id="w2e1">
                 <h1>25 squares</h1>
                 <p>I used HSL instead of RGB colors
@@ -57,7 +59,7 @@
                 <p>mouse-x changes size of the circles, arrows change the number of them
                     <a class="codelink" href="https://github.com/Radek-Novak/CreativeCoding/blob/gh-pages/class_resources/Creative%20Coding%20Sketches/Week%202/circles/circles.pde">code</a>
                 </p>
-            
+
                 <button class="js-hide">toggle demo</button>
                 <canvas data-processing-sources="class_resources/Creative%20Coding%20Sketches/Week%202/circles/circles.pde"></canvas>
             </section>
@@ -65,10 +67,10 @@
 
         <section>
             <h1>Week 3</h1>
-            
+
             <section id="w3e1">
                 <h1>Spinning top</h1>
-                <p>Added symmetry and replaced bouncing with porting to other side 
+                <p>Added symmetry and replaced bouncing with porting to other side
                     <a class="codelink" href="https://github.com/Radek-Novak/CreativeCoding/blob/gh-pages/class_resources/Creative%20Coding%20Sketches/Week%203/w3_04/w3_04.pde">code</a>
                 </p>
                 <button class="js-hide">toggle demo</button>
@@ -76,7 +78,7 @@
             </section>
             <section id="w3e2">
                 <h1>Process 0</h1>
-                <p> 
+                <p>
                     <a class="codelink" href="https://github.com/Radek-Novak/CreativeCoding/blob/gh-pages/class_resources/Creative%20Coding%20Sketches/Week%203/process_0/process_0.pde">code</a>
                 </p>
                 <button class="js-hide">toggle demo</button>
@@ -85,7 +87,7 @@
         </section>
         <section>
             <h1>Week 4</h1>
-            
+
             <section id="w4e1">
                 <h1>Color picker</h1>
                 <p>Click in the middle to select brightness
@@ -101,6 +103,34 @@
                 </p>
                 <button class="js-hide">toggle demo</button>
                 <canvas data-processing-sources="class_resources/Creative%20Coding%20Sketches/Week%204/one_pixel_cinema/one_pixel_cinema.pde"></canvas>
+            </section>
+            <section id="mazal">
+                <h1>Extra: Mazal</h1>
+                <p>Press 's' to save
+                    <a class="codelink" href="https://github.com/Radek-Novak/CreativeCoding/blob/gh-pages/class_resources/Creative%20Coding%20Sketches/Week%204/mazal/mazal.pde">code</a>
+                </p>
+                <div class="rule">
+                    element Introvert <br>
+                    shape:      circle
+                    <ul>
+                        <li>behavior: move in line at constant speed</li>
+                        <li>behavior: bounce from canvas edges</li>
+                        <li>behavior: grow when not overlapped with another element</li>
+                        <li>behavior: shrink when overlapping</li>
+                    </ul>
+                    
+                    process Mazal
+                    <ul>
+                        <li>a picture to be read from is loaded</li>
+                        <li>every element is positioned randomly and sent in random direction</li>
+                        <li>color under the center of each element is painted under the whole element</li>
+                    </ul>
+                
+                </div>
+
+                <button class="js-hide">toggle demo</button>
+                <canvas data-processing-sources="class_resources/Creative%20Coding%20Sketches/Week%204/mazal/mazal.pde"></canvas>
+                <br><span class="copy-info">picture by <a href="http://www.flickr.com/photos/thelastminute/97182354/in/set-72057594061270615/">Duncan Rawlinson</a></span>
             </section>
         </section>
     </main>

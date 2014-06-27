@@ -19,7 +19,7 @@ Copyright (c) 2014 Radek Nov\u00e1k
 radek-novak.com
 
 
-element Schizoid
+element Introvert
 shape:      circle
 behavior:   move in line at constant speed
 behavior:   bounce from canvas edges
@@ -54,9 +54,9 @@ boolean showBalls = true;
 float lastX = 0;
 
 public void setup() {
-  size(700, 1005);
+  size(350, 500);
   background(0);
-  bgImg = loadImage("karelin.jpg");
+  bgImg = loadImage("img/chomsky.jpg");
   
   rectMode(CENTER);
   smooth(4);

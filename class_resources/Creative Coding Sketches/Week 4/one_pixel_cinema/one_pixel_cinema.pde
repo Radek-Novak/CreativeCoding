@@ -49,7 +49,7 @@ void setup() {
   rectMode(CENTER);
   smooth(4);
   noStroke();
-  frameRate(20);
+  //frameRate(20);
 
   elX = new float[N];
   elY = new float[N];
