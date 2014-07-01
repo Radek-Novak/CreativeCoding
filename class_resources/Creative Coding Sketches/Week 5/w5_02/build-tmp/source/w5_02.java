@@ -1,3 +1,19 @@
+import processing.core.*; 
+import processing.data.*; 
+import processing.event.*; 
+import processing.opengl.*; 
+
+import java.util.HashMap; 
+import java.util.ArrayList; 
+import java.io.File; 
+import java.io.BufferedReader; 
+import java.io.PrintWriter; 
+import java.io.InputStream; 
+import java.io.OutputStream; 
+import java.io.IOException; 
+
+public class w5_02 extends PApplet {
+
 /*
  * Creative Coding
  * Week 5, 02 - Digital Clock
@@ -19,9 +35,9 @@ int curSec;
 int count = 0;
 int rotated = 0;
 int H_N = 15;
-color[] lastCol = new color[H_N];
+int[] lastCol = new int[H_N];
 int Hz = H_N;
-void setup() {
+public void setup() {
   size(1024, 600);
 
   myFont = loadFont("Frutiger65-Bold-200.vlw");  // load the font from this sketch's data directory
@@ -37,7 +53,7 @@ void setup() {
   frameRate(Hz);
 }
 
-void draw() {
+public void draw() {
   background(0, 100, 200);
   fill(255);
   
@@ -56,12 +72,12 @@ void draw() {
   
 }
 
-void drawSecond(int numero, int sz, float offsetX, float offsetY, float rot) {
+public void drawSecond(int numero, int sz, float offsetX, float offsetY, float rot) {
   String theText = str(numero); // convert numero to string
   textSize(sz); // set big font size
 
-  float textW = textWidth(theText) * 0.5;
-  float textAsc = textAscent() * 0.375;
+  float textW = textWidth(theText) * 0.5f;
+  float textAsc = textAscent() * 0.375f;
   if (offsetX > 0) {
     fill(255, 255,255, map(sz, 0, Hz*20, 255, 0));
     
@@ -72,7 +88,7 @@ void drawSecond(int numero, int sz, float offsetX, float offsetY, float rot) {
 
 }
 
-void drawHour(int numero, int sz, float offsetX, float offsetY, color[] col) {
+public void drawHour(int numero, int sz, float offsetX, float offsetY, int[] col) {
   String theText = str(numero); // convert numero to string
   float textW;
   float textAsc;
@@ -80,20 +96,29 @@ void drawHour(int numero, int sz, float offsetX, float offsetY, color[] col) {
   for ( int i = H_N - 1; i > 0; i--) {
     textSize(i*sz);
     fill(lastCol[i]);
-    textW = textWidth(theText) * 0.5;
-    textAsc = textAscent() * 0.375;
+    textW = textWidth(theText) * 0.5f;
+    textAsc = textAscent() * 0.375f;
 
     text(theText, width/2 - textW + offsetX, height/2 + textAsc + offsetY);
   }
 }
-void drawMinute(int numero, int sz, float offsetX, float offsetY, float rot) {
+public void drawMinute(int numero, int sz, float offsetX, float offsetY, float rot) {
   String theText = str(numero); // convert numero to string
   textSize(sz); // set big font size
 
-  float textW = textWidth(theText) * 0.5;
-  float textAsc = textAscent() * 0.375;
+  float textW = textWidth(theText) * 0.5f;
+  float textAsc = textAscent() * 0.375f;
   fill(255, 255,255);
     
   // draw text offset from the centre of the screen
   text(theText, width/2 - textW + offsetX, height/2 + textAsc + offsetY);
+}
+  static public void main(String[] passedArgs) {
+    String[] appletArgs = new String[] { "w5_02" };
+    if (passedArgs != null) {
+      PApplet.main(concat(appletArgs, passedArgs));
+    } else {
+      PApplet.main(appletArgs);
+    }
+  }
 }

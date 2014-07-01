@@ -26,9 +26,7 @@ void setup() {
   smooth(8); // enable antialiasing
 }
 
-
 void draw() {
-
   background(255);
 
   for (int i = aniChars.size()-1; i >= 0; i--) {
@@ -37,16 +35,11 @@ void draw() {
   }
 }
 
-
 void keyReleased() {
-
   if (8 == int(key) && aniChars.size() > 0) {
     println("c");
     aniChars.remove(aniChars.size()-1);
   }else{ 
     aniChars.add( new AniCharacter(random(width), random(height), key) );
   }
-
-
 }
-
